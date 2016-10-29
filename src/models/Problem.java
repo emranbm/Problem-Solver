@@ -22,7 +22,13 @@ public abstract class Problem {
         return state.getActions();
     }
 
-    public abstract State actionResult(State state, Action action);
+    public State actionResult(State state, Action action) {
+        for (Action a : availableActions(state))
+            if (a.equals(action))
+                return action.getNextState();
+
+        return null;
+    }
 
     /**
      * Determines if a state is goal or not.
