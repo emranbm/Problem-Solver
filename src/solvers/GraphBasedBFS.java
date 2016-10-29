@@ -22,12 +22,12 @@ public class GraphBasedBFS implements Solver {
     }
 
     @Override
-    public boolean tick() {
+    public State tick() {
         State currentState = queue.poll();
         ArrayList<State> children = currentState.getChildren();
 
         queue.addAll(children);
 
-        return problem.isGoal(currentState);
+        return problem.isGoal(currentState) ? currentState : null;
     }
 }
