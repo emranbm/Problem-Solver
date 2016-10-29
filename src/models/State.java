@@ -11,6 +11,7 @@ public class State {
 
     private int id;
     private ArrayList<Action> actions;
+    private State parent;
 
     public State(int id) {
         this.id = id;
@@ -26,5 +27,32 @@ public class State {
 
     public final ArrayList<Action> getActions() {
         return (ArrayList<Action>) actions.clone();
+    }
+
+    public final ArrayList<State> getChildren() {
+        ArrayList<State> result = new ArrayList<>();
+
+        for (Action action : actions)
+            result.add(action.getResult());
+
+        return result;
+    }
+
+    /**
+     * Returns the parent of the current state.
+     *
+     * @return The previous state that came to this state.
+     */
+    public State getParent() {
+        return parent;
+    }
+
+    /**
+     * Sets the parent of the current state.
+     *
+     * @param parent The previous state that came to this state.
+     */
+    public void setParent(State parent) {
+        this.parent = parent;
     }
 }
