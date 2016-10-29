@@ -30,16 +30,16 @@ public class State implements Cloneable {
     }
 
     public final ArrayList<State> getChildren() {
-        ArrayList<State> result = new ArrayList<>();
+        ArrayList<State> children = new ArrayList<>();
 
         for (Action action : actions)
             try {
-                result.add((State) action.getResult().clone());
+                children.add((State) action.getResult().clone());
             } catch (CloneNotSupportedException e) {
                 e.printStackTrace();
             }
 
-        return result;
+        return children;
     }
 
     /**
