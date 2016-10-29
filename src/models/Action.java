@@ -5,7 +5,7 @@ package models;
  */
 public abstract class Action {
 
-    public abstract State result();
+    public abstract State getResult();
 
-    public abstract int cost();
+    public abstract int getCost();
 }
