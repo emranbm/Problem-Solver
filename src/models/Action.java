@@ -5,5 +5,5 @@ package models;
  */
 public abstract class Action {
 
-    public abstract State takeAction();
+    public abstract State result();
 }
