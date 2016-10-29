@@ -12,33 +12,50 @@ import java.util.LinkedList;
 public class GraphBasedDFS implements Solver {
 
     private Problem problem;
-    private LinkedList<State> queue;
+    private LinkedList<StateDepthBundle> queue;
 
     private int expanded = 0;
     private int seen = 1;
     private int maxNodesInRAM = 0;
 
-    public GraphBasedDFS(Problem problem) {
+    private int maxDepth;
+
+    public GraphBasedDFS(Problem problem, int maxDepth) {
         this.problem = problem;
         this.queue = new LinkedList<>();
-        this.queue.add(problem.startState());
+        this.queue.add(new StateDepthBundle(problem.startState(), 0));
+        this.maxDepth = maxDepth;
     }
 
     @Override
     public State tick() {
-        State currentState = queue.getLast();
-        queue.remove(queue.size() - 1);
-        ArrayList<State> children = currentState.getChildren();
+        StateDepthBundle currentBundle;
+        try {
+            currentBundle = queue.getLast();
+        } catch (Exception e) {
+            // Nothing found in the given max depth.
+            return new State(-1);
+        }
 
+        queue.remove(queue.size() - 1);
+        ArrayList<State> children = currentBundle.state.getChildren();
         expanded++;
+
+        int nextDepth = currentBundle.depth + 1;
+
+        if (nextDepth > maxDepth)
+            return null;
 
         for (State state : children) {
             seen++;
             if (problem.isGoal(state))
                 return state;
+
+            queue.add(new StateDepthBundle(state, nextDepth));
         }
 
-        queue.addAll(children);
+
+//        queue.addAll(children);
 
         if (queue.size() > maxNodesInRAM)
             maxNodesInRAM = queue.size();
@@ -59,15 +76,5 @@ public class GraphBasedDFS implements Solver {
     @Override
     public int maxNodesInRAM() {
         return maxNodesInRAM;
-    }
-
-    public class StateDepthBundle {
-        public StateDepthBundle(int depth, State state) {
-            this.depth = depth;
-            this.state = state;
-        }
-
-        int depth;
-        State state;
     }
 }
