@@ -9,6 +9,6 @@ import solvers.*;
 public class Main {
 
     public static void main(String[] args) {
-        new Runner(new GraphBasedDFSEvolutionary(new SimpleProblem())).start();
+        new Runner(new TreeBasedDFSEvolutionary(new SimpleProblem())).start();
     }
 }
