@@ -36,7 +36,6 @@ public class GraphBasedDFS implements Solver {
             seen++;
             if (problem.isGoal(state))
                 return state;
-            queue.addFirst(state);
         }
 
         queue.addAll(children);
@@ -60,5 +59,15 @@ public class GraphBasedDFS implements Solver {
     @Override
     public int maxNodesInRAM() {
         return maxNodesInRAM;
+    }
+
+    public class StateDepthBundle {
+        public StateDepthBundle(int depth, State state) {
+            this.depth = depth;
+            this.state = state;
+        }
+
+        int depth;
+        State state;
     }
 }
