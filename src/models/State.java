@@ -14,6 +14,7 @@ public class State implements Cloneable {
     private State parent;
 
     public State(int id) {
+        actions = new ArrayList<>();
         this.id = id;
     }
 
@@ -34,7 +35,7 @@ public class State implements Cloneable {
 
         for (Action action : actions)
             try {
-                State child = (State) action.getResult().clone();
+                State child = (State) action.getNextState().clone();
                 child.setParent(this);
                 children.add(child);
             } catch (CloneNotSupportedException e) {
