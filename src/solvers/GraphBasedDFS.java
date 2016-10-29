@@ -12,13 +12,13 @@ import java.util.LinkedList;
 public class GraphBasedDFS implements Solver {
 
     private Problem problem;
-    private LinkedList<StateDepthBundle> queue;
+    protected LinkedList<StateDepthBundle> queue;
 
     private int expanded = 0;
     private int seen = 1;
     private int maxNodesInRAM = 0;
 
-    private int maxDepth;
+    protected int maxDepth;
 
     public GraphBasedDFS(Problem problem, int maxDepth) {
         this.problem = problem;

@@ -1,7 +1,7 @@
 package samples;
 
 import runners.Runner;
-import solvers.GraphBasedBFS;
+import solvers.*;
 
 /**
  * Created by emran on 10/29/16.
@@ -9,6 +9,6 @@ import solvers.GraphBasedBFS;
 public class Main {
 
     public static void main(String[] args) {
-        new Runner(new GraphBasedBFS(new SimpleProblem())).start();
+        new Runner(new GraphBasedDFSEvolutionary(new SimpleProblem())).start();
     }
 }
