@@ -3,9 +3,21 @@ package models;
 /**
  * Created by emran on 10/29/16.
  */
-public abstract class Action {
+public class Action {
 
-    public abstract State getResult();
+    private State nextState;
+    private int cost;
 
-    public abstract int getCost();
+    public Action(State nextState, int cost) {
+        this.nextState = nextState;
+        this.cost = cost;
+    }
+
+    public State getNextState() {
+        return nextState;
+    }
+
+    public int getCost() {
+        return cost;
+    }
 }
