@@ -22,6 +22,8 @@ public abstract class Problem {
         return state.getActions();
     }
 
+    public abstract State actionResult(State state, Action action);
+
     /**
      * Determines if a state is goal or not.
      *
