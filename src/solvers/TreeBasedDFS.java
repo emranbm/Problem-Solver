@@ -10,14 +10,14 @@ import java.util.LinkedList;
  * Created by emran on 10/29/16.
  */
 public class TreeBasedDFS implements Solver {
-    private LinkedList<StateDepthBundle> queue;
+    protected LinkedList<StateDepthBundle> queue;
     private Problem problem;
 
     private int expanded = 0;
     private int seen = 1;
     private int maxNodesInRAM = 0;
 
-    private int maxDepth;
+    protected int maxDepth;
 
     private ArrayList<State> seenStates;
 
@@ -38,6 +38,7 @@ public class TreeBasedDFS implements Solver {
             // Nothing found in the given max depth.
             return new State(-1);
         }
+        queue.remove(queue.size() - 1);
         ArrayList<State> children = currentBundle.state.getChildren();
         expanded++;
 
