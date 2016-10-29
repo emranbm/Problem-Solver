@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * <p>
  * Created by emran on 10/29/16.
  */
-public class State {
+public class State implements Cloneable {
 
     private int id;
     private ArrayList<Action> actions;
@@ -33,7 +33,11 @@ public class State {
         ArrayList<State> result = new ArrayList<>();
 
         for (Action action : actions)
-            result.add(action.getResult());
+            try {
+                result.add((State) action.getResult().clone());
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
 
         return result;
     }
