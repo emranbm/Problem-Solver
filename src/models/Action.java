@@ -6,4 +6,6 @@ package models;
 public abstract class Action {
 
     public abstract State result();
+
+    public abstract int cost();
 }
