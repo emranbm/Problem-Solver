@@ -34,7 +34,9 @@ public class State implements Cloneable {
 
         for (Action action : actions)
             try {
-                children.add((State) action.getResult().clone());
+                State child = (State) action.getResult().clone();
+                child.setParent(this);
+                children.add(child);
             } catch (CloneNotSupportedException e) {
                 e.printStackTrace();
             }
