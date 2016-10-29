@@ -13,4 +13,8 @@ public interface Solver {
      * @return The goal state if found. Returns null if not found the goal yet.
      */
     State tick();
+
+    int getSeenStatesCount();
+    int getExpandedCount();
+    int maxNodesInRAM();
 }

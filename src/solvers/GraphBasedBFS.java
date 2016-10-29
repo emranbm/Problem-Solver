@@ -15,6 +15,9 @@ public class GraphBasedBFS implements Solver {
     private LinkedList<State> queue;
     private Problem problem;
 
+    private int seenAndExpanded = 0;
+    private int maxNodesInRAM = 0;
+
     public GraphBasedBFS(Problem problem) {
         this.problem = problem;
         queue = new LinkedList<>();
@@ -26,8 +29,28 @@ public class GraphBasedBFS implements Solver {
         State currentState = queue.poll();
         ArrayList<State> children = currentState.getChildren();
 
+        seenAndExpanded++;
+
         queue.addAll(children);
 
+        if (queue.size() > maxNodesInRAM)
+            maxNodesInRAM = queue.size();
+
         return problem.isGoal(currentState) ? currentState : null;
+    }
+
+    @Override
+    public int getSeenStatesCount() {
+        return seenAndExpanded;
+    }
+
+    @Override
+    public int getExpandedCount() {
+        return seenAndExpanded;
+    }
+
+    @Override
+    public int maxNodesInRAM() {
+        return maxNodesInRAM;
     }
 }
