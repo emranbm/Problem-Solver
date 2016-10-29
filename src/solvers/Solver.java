@@ -1,5 +1,7 @@
 package solvers;
 
+import models.State;
+
 /**
  * Created by emran on 10/29/16.
  */
@@ -8,7 +10,7 @@ public interface Solver {
     /**
      * This method gets called periodically.
      *
-     * @return True if the search is completed. Otherwise false.
+     * @return The goal state if found. Returns null if not found the goal yet.
      */
-    boolean tick();
+    State tick();
 }
