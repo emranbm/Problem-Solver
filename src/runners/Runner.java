@@ -22,6 +22,6 @@ public class Runner extends Thread {
         }
 
         //TODO print nice result :)
-        System.out.println(goal);
+        System.out.println(goal.getId());
     }
 }
