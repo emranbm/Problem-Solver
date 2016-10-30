@@ -58,4 +58,12 @@ public abstract class Problem {
      * @return An integer representing how far we are from the goal. (Lower is better) (The minimum should be 0)
      */
     public abstract int h(State state);
+
+    /**
+     * The cost spent from start to the given state.
+     *
+     * @param state
+     * @return
+     */
+    public abstract int g(State state);
 }

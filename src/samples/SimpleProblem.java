@@ -44,4 +44,9 @@ public class SimpleProblem extends Problem {
     public int h(State state) {
         return 0;
     }
+
+    @Override
+    public int g(State state) {
+        return 0;
+    }
 }
