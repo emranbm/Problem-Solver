@@ -39,19 +39,15 @@ public class UniformCost implements Solver {
         queue.remove(currentState);
 
         ArrayList<State> children = currentState.getChildren();
+        seen++;
+        seenStates.add(currentState);
+        if (problem.isGoal(currentState))
+            return currentState;
         expanded++;
 
         for (int i = children.size() - 1; i >= 0; i--) {
             if (seenStates.contains(children.get(i)))
                 children.remove(i);
-        }
-
-
-        for (State state : children) {
-            seen++;
-            seenStates.add(state);
-            if (problem.isGoal(state))
-                return state;
         }
 
         queue.addAll(children);
