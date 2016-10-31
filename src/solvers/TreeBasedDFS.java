@@ -24,6 +24,7 @@ public class TreeBasedDFS extends TreeBasedSolver {
         queue = new LinkedList<>();
         queue.add(new StateDepthBundle(problem.startState(), 0));
         this.maxDepth = maxDepth;
+        seenStates.add(problem.startState());
     }
 
     @Override
@@ -56,10 +57,10 @@ public class TreeBasedDFS extends TreeBasedSolver {
             if (problem.isGoal(state))
                 return state;
 
+            //queue.addAll(children);
             queue.add(new StateDepthBundle(state, nextDepth));
         }
 
-//        queue.addAll(children);
 
         if (queue.size() > maxNodesInRAM)
             maxNodesInRAM = queue.size();
