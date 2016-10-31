@@ -28,6 +28,12 @@ public class SimpleProblem extends Problem {
         states.get(1).addAction(new Action(states.get(3), 1));
         states.get(2).addAction(new Action(states.get(3), 1));
         states.get(3).addAction(new Action(states.get(4), 1));
+
+        states.get(1).addAction(new Action(states.get(0), 1));
+        states.get(2).addAction(new Action(states.get(0), 1));
+        states.get(3).addAction(new Action(states.get(1), 1));
+        states.get(3).addAction(new Action(states.get(2), 1));
+        states.get(4).addAction(new Action(states.get(3), 1));
     }
 
     @Override
