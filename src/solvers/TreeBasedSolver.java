@@ -11,6 +11,10 @@ public abstract class TreeBasedSolver implements Solver {
 
     protected ArrayList<State> seenStates;
 
+    public TreeBasedSolver() {
+        seenStates = new ArrayList<>();
+    }
+
     public ArrayList<State> getSeenStates() {
         return (ArrayList<State>) seenStates.clone();
     }

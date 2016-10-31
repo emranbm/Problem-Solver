@@ -21,7 +21,6 @@ public class TreeBasedDFS extends TreeBasedSolver {
 
     public TreeBasedDFS(Problem problem, int maxDepth) {
         this.problem = problem;
-        seenStates = new ArrayList<>();
         queue = new LinkedList<>();
         queue.add(new StateDepthBundle(problem.startState(), 0));
         this.maxDepth = maxDepth;

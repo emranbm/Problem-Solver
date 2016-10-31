@@ -19,7 +19,6 @@ public class TreeBasedBFS extends TreeBasedSolver {
 
     public TreeBasedBFS(Problem problem) {
         this.problem = problem;
-        seenStates = new ArrayList<>();
         queue = new LinkedList<>();
         queue.add(problem.startState());
     }
