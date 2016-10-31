@@ -9,7 +9,7 @@ import java.util.LinkedList;
 /**
  * Created by emran on 10/29/16.
  */
-public class TreeBasedDFS implements Solver {
+public class TreeBasedDFS extends TreeBasedSolver {
     protected LinkedList<StateDepthBundle> queue;
     private Problem problem;
 
@@ -18,8 +18,6 @@ public class TreeBasedDFS implements Solver {
     private int maxNodesInRAM = 0;
 
     protected int maxDepth;
-
-    private ArrayList<State> seenStates;
 
     public TreeBasedDFS(Problem problem, int maxDepth) {
         this.problem = problem;

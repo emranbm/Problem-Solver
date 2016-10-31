@@ -9,15 +9,13 @@ import java.util.LinkedList;
 /**
  * Created by emran on 10/29/16.
  */
-public class TreeBasedBFS implements Solver {
+public class TreeBasedBFS extends TreeBasedSolver {
     private LinkedList<State> queue;
     private Problem problem;
 
     private int expanded = 0;
     private int seen = 1;
     private int maxNodesInRAM = 0;
-
-    private ArrayList<State> seenStates;
 
     public TreeBasedBFS(Problem problem) {
         this.problem = problem;
