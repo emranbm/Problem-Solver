@@ -39,14 +39,4 @@ public class SimpleProblem extends Problem {
     public boolean isGoal(State state) {
         return state.getId() == 4;
     }
-
-    @Override
-    public int h(State state) {
-        return 0;
-    }
-
-    @Override
-    public int g(State state) {
-        return 0;
-    }
 }
