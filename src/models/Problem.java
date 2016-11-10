@@ -31,6 +31,22 @@ public abstract class Problem {
     }
 
     /**
+     * Returns all states available from the given state.
+     *
+     * @param state The parent state
+     * @return All states that the parent can reach them by an action.
+     */
+    public ArrayList<State> getChildren(State state) {
+        ArrayList<Action> actions = availableActions(state);
+        ArrayList<State> children = new ArrayList<>();
+
+        for (Action action : actions)
+            children.add(action.getNextState());
+
+        return children;
+    }
+
+    /**
      * Determines if a state is goal or not.
      *
      * @param state The state to be checked.
@@ -57,7 +73,7 @@ public abstract class Problem {
      * @param state The current state.
      * @return An integer representing how far we are from the goal. (Lower is better) (The minimum should be 0)
      */
-    public int h(State state){
+    public int h(State state) {
         return 0;
     }
 
@@ -67,7 +83,11 @@ public abstract class Problem {
      * @param state
      * @return
      */
-    public int g(State state){
+    public int g(State state) {
         return 0;
+    }
+
+    public State finalState() {
+        return null;
     }
 }

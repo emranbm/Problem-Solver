@@ -28,7 +28,7 @@ public class GraphBasedBFS implements Solver {
     @Override
     public State tick() {
         State currentState = queue.poll();
-        ArrayList<State> children = currentState.getChildren();
+        ArrayList<State> children = problem.getChildren(currentState);
 
         expanded++;
 

@@ -27,7 +27,7 @@ public class TreeBasedBFS extends TreeBasedSolver {
     @Override
     public State tick() {
         State currentState = queue.poll();
-        ArrayList<State> children = currentState.getChildren();
+        ArrayList<State> children = problem.getChildren(currentState);
         expanded++;
 
         for (int i = children.size() - 1; i >= 0; i--) {

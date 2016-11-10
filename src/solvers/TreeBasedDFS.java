@@ -37,7 +37,7 @@ public class TreeBasedDFS extends TreeBasedSolver {
             return new State(-1);
         }
         queue.remove(queue.size() - 1);
-        ArrayList<State> children = currentBundle.state.getChildren();
+        ArrayList<State> children = problem.getChildren(currentBundle.state);
         expanded++;
 
         int nextDepth = currentBundle.depth + 1;
