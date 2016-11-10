@@ -1,6 +1,5 @@
 package runners;
 
-import models.State;
 import solvers.Solver;
 
 import java.util.ArrayList;
