@@ -10,9 +10,15 @@ import java.util.ArrayList;
 public class Runner extends Thread {
 
     private Solver solver;
+    private StateFoundListener listener;
 
     public Runner(Solver solver) {
         this.solver = solver;
+    }
+
+    public Runner(Solver solver, StateFoundListener listener) {
+        this(solver);
+        this.listener = listener;
     }
 
     @Override
@@ -21,6 +27,7 @@ public class Runner extends Thread {
         while (goal == null) {
             goal = solver.tick();
         }
+        this.listener.found(goal);
 
         models.State state = goal;
 
@@ -47,5 +54,7 @@ public class Runner extends Thread {
     private static void printPath(ArrayList<models.State> path) {
         for (models.State state : path)
             System.out.print(state.getId() + " ");
+
+        System.out.println();
     }
 }
