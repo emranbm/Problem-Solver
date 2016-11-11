@@ -6,17 +6,18 @@ import models.Problem;
 import models.State;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by emran on 11/11/16.
  */
 public class PathFinderProblem extends Problem {
 
-    private ArrayList<Cell[]> walls;
+    private HashMap<Cell, Cell> walls;
     private int width, height;
     private Cell goal;
 
-    public PathFinderProblem(ArrayList<Cell[]> walls, int width, int height, Cell goal) {
+    public PathFinderProblem(HashMap<Cell, Cell> walls, int width, int height, Cell goal) {
         this.walls = walls;
         this.width = width;
         this.height = height;
@@ -28,6 +29,22 @@ public class PathFinderProblem extends Problem {
         return new Cell(1, 1);
     }
 
+    private boolean isWall(Cell cell1, Cell cell2) {
+        try {
+            if (walls.get(cell1).equals(cell2))
+                return true;
+        } catch (NullPointerException e) {
+        }
+
+        try {
+            if (walls.get(cell2).equals(cell1))
+                return true;
+        } catch (NullPointerException e) {
+        }
+
+        return false;
+    }
+
     @Override
     public ArrayList<Action> availableActions(State state) {
 
@@ -35,20 +52,26 @@ public class PathFinderProblem extends Problem {
 
         Cell cell = (Cell) state;
 
+        Cell newCell;
+
         //Left
-        if (cell.getX() > 1)
+        newCell = (Cell) actionResult(state, new CellAction(-1, 0));
+        if (cell.getX() > 1 && !isWall(newCell, (Cell) state))
             actions.add(new CellAction(-1, 0));
 
         //Right
-        if (cell.getX() < width)
+        newCell = (Cell) actionResult(state, new CellAction(1, 0));
+        if (cell.getX() < width && !isWall(newCell, (Cell) state))
             actions.add(new CellAction(1, 0));
 
         //Up
-        if (cell.getY() > 1)
+        newCell = (Cell) actionResult(state, new CellAction(0, -1));
+        if (cell.getY() > 1 && !isWall(newCell, (Cell) state))
             actions.add(new CellAction(0, -1));
 
         //Down
-        if (cell.getY() < height)
+        newCell = (Cell) actionResult(state, new CellAction(0, 1));
+        if (cell.getY() < height && !isWall(newCell, (Cell) state))
             actions.add(new CellAction(0, 1));
 
         return actions;
