@@ -14,9 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         new Runner(new TreeBasedBFS(new EightQueensProblem()), state -> {
-            for (int i : ((CheckerState) state).getPermutation())
-                System.out.print(i + " ");
-            System.out.println();
+            System.out.println(state.describeSelf());
         }).start();
     }
 }

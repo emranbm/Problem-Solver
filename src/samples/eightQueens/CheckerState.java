@@ -45,7 +45,7 @@ public class CheckerState extends State {
         for (int i : permutation)
             self += i + ", ";
 
-        self = self.substring(0,self.length() - 3) + "]";
+        self = self.substring(0,self.length() - 2) + "]";
 
         return self;
     }
