@@ -1,5 +1,6 @@
 package solvers;
 
+import models.LinkedState;
 import models.Problem;
 import models.State;
 
@@ -49,6 +50,10 @@ public class UniformCost implements Solver {
             if (seenStates.contains(children.get(i)))
                 children.remove(i);
         }
+
+        for (State child : children)
+            if (child instanceof LinkedState)
+                ((LinkedState) child).setParent((LinkedState) currentState);
 
         queue.addAll(children);
 

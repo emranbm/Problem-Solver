@@ -1,5 +1,7 @@
 package solvers;
 
+import models.LinkedState;
+import models.NoState;
 import models.Problem;
 import models.State;
 
@@ -34,7 +36,7 @@ public class GraphBasedDFS implements Solver {
             currentBundle = queue.getLast();
         } catch (Exception e) {
             // Nothing found in the given max depth.
-            return new State(-1);
+            return new NoState();
         }
 
         queue.remove(queue.size() - 1);
@@ -47,6 +49,10 @@ public class GraphBasedDFS implements Solver {
             return null;
 
         for (State state : children) {
+
+            if (state instanceof LinkedState)
+                ((LinkedState) state).setParent((LinkedState) currentBundle.state);
+
             seen++;
             if (problem.isGoal(state))
                 return state;

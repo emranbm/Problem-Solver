@@ -18,17 +18,9 @@ public abstract class Problem {
      * @param state The state to get actions from.
      * @return All actions that is suitable in the given state.
      */
-    public ArrayList<Action> availableActions(State state) {
-        return state.getActions();
-    }
+    public abstract ArrayList<Action> availableActions(State state);
 
-    public State actionResult(State state, Action action) {
-        for (Action a : availableActions(state))
-            if (a.equals(action))
-                return action.getNextState();
-
-        return null;
-    }
+    public abstract State actionResult(State state, Action action);
 
     /**
      * Returns all states available from the given state.
@@ -41,7 +33,7 @@ public abstract class Problem {
         ArrayList<State> children = new ArrayList<>();
 
         for (Action action : actions)
-            children.add(action.getNextState());
+            children.add(actionResult(state, action));
 
         return children;
     }

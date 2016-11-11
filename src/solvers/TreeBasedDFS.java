@@ -1,5 +1,7 @@
 package solvers;
 
+import models.LinkedState;
+import models.NoState;
 import models.Problem;
 import models.State;
 
@@ -34,7 +36,7 @@ public class TreeBasedDFS extends TreeBasedSolver {
             currentBundle = queue.getLast();
         } catch (Exception e) {
             // Nothing found in the given max depth.
-            return new State(-1);
+            return new NoState();
         }
         queue.remove(queue.size() - 1);
         ArrayList<State> children = problem.getChildren(currentBundle.state);
@@ -52,6 +54,10 @@ public class TreeBasedDFS extends TreeBasedSolver {
 
 
         for (State state : children) {
+
+            if (state instanceof LinkedState)
+                ((LinkedState) state).setParent((LinkedState) currentBundle.state);
+
             seen++;
             seenStates.add(state);
             if (problem.isGoal(state))

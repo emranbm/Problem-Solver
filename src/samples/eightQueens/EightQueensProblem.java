@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class EightQueensProblem extends Problem {
     @Override
     public State startState() {
-        return new CheckerState(0, 0, 1, 2, 3, 4, 5, 6, 7);
+        return new CheckerState(0, 1, 2, 3, 4, 5, 6, 7);
     }
 
     @Override
@@ -38,17 +38,23 @@ public class EightQueensProblem extends Problem {
 
         for (int i = 0; i < 8; i++)
             for (int j = i + 1; j < 8; j++) {
-                int[] a = ((CheckerState) state).getPermutation();
-
-                int tmp = a[i];
-                a[i] = a[j];
-                a[j] = tmp;
-
-                State s = new CheckerState((int) (Math.random() * Integer.MAX_VALUE), a);
-
-                actions.add(new Action(s, 1));
+                actions.add(new CheckerAction(i,j));
             }
 
         return actions;
+    }
+
+    @Override
+    public State actionResult(State state, Action action) {
+        int[] a = ((CheckerState) state).getPermutation();
+
+        int i = ((CheckerAction) action).getI();
+        int j = ((CheckerAction) action).getJ();
+
+        int tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
+
+        return new CheckerState(a);
     }
 }

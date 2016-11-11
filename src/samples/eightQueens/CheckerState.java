@@ -10,17 +10,12 @@ public class CheckerState extends State {
 
     private int[] permutation;
 
-    public CheckerState(int id, int[] permutation) {
-        super(id);
+    public CheckerState(int[] permutation) {
         this.permutation = permutation.clone();
     }
 
-    public CheckerState(int id, int q0, int q1, int q2, int q3, int q4, int q5, int q6, int q7) {
-        this(id, new int[]{q0, q1, q2, q3, q4, q5, q6, q7});
-    }
-
-    public CheckerState(int id, CheckerState cloner) {
-        this(id, cloner.getPermutation());
+    public CheckerState(int q0, int q1, int q2, int q3, int q4, int q5, int q6, int q7) {
+        this(new int[]{q0, q1, q2, q3, q4, q5, q6, q7});
     }
 
     public int[] getPermutation() {
@@ -42,5 +37,16 @@ public class CheckerState extends State {
                 return false;
 
         return true;
+    }
+
+    @Override
+    public String describeSelf() {
+        String self = "[";
+        for (int i : permutation)
+            self += i + ", ";
+
+        self = self.substring(0,self.length() - 3) + "]";
+
+        return self;
     }
 }

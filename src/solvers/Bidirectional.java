@@ -1,6 +1,7 @@
 package solvers;
 
 import models.Action;
+import models.LinkedState;
 import models.Problem;
 import models.State;
 
@@ -12,10 +13,14 @@ import java.util.ArrayList;
 public class Bidirectional implements Solver {
 
     private TreeBasedBFS solver1, solver2;
-    private State finalState;
+    private LinkedState finalState;
 
-    public Bidirectional(Problem problem) {
-        finalState = problem.finalState();
+    /**
+     * @param problem
+     * @throws ClassCastException If the problem final or start state is not an instance of {@link LinkedState LinkedState}.
+     */
+    public Bidirectional(Problem problem) throws ClassCastException {
+        finalState = (LinkedState) problem.finalState();
         solver1 = new TreeBasedBFS(problem);
         solver2 = new TreeBasedBFS(overrideStartState(problem, finalState));
     }
@@ -69,16 +74,16 @@ public class Bidirectional implements Solver {
         if (newState2 != null)
             return newState2;
 
-        State intersection;
+        LinkedState intersection;
 
-        if ((intersection = getIntersection(solver1.seenStates, solver2.seenStates)) != null) {
+        if ((intersection = (LinkedState) getIntersection(solver1.seenStates, solver2.seenStates)) != null) {
             reverseParents(finalState, intersection);
             return finalState;
         } else
             return null;
     }
 
-    private static void reverseParents(State start, State end) {
+    private static void reverseParents(LinkedState start, LinkedState end) {
         if (start.equals(end))
             return;
         if (end.getParent().equals(start)) {
@@ -86,7 +91,7 @@ public class Bidirectional implements Solver {
             return;
         }
 
-        State child, parent, grandparent;
+        LinkedState child, parent, grandparent;
 
         child = null;
         parent = end;

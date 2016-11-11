@@ -1,5 +1,6 @@
 package solvers;
 
+import models.LinkedState;
 import models.Problem;
 import models.State;
 
@@ -37,6 +38,10 @@ public class TreeBasedBFS extends TreeBasedSolver {
 
 
         for (State state : children) {
+
+            if (state instanceof LinkedState)
+                ((LinkedState) state).setParent((LinkedState) currentState);
+
             seen++;
             seenStates.add(state);
             if (problem.isGoal(state))

@@ -1,5 +1,6 @@
 package solvers;
 
+import models.NoState;
 import models.Problem;
 import models.State;
 
@@ -18,7 +19,7 @@ public class TreeBasedDFSEvolutionary extends TreeBasedDFS {
     public State tick() {
         State result = super.tick();
 
-        if (result != null && result.getId() == -1) {
+        if (result != null && result instanceof NoState) {
             maxDepth++;
             queue.add(new StateDepthBundle(problem.startState(), 0));
             return null;

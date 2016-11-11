@@ -1,5 +1,6 @@
 package solvers;
 
+import models.LinkedState;
 import models.Problem;
 import models.State;
 
@@ -33,6 +34,10 @@ public class GraphBasedBFS implements Solver {
         expanded++;
 
         for (State state : children) {
+
+            if(state instanceof LinkedState)
+                ((LinkedState) state).setParent((LinkedState) currentState);
+
             seen++;
             if (problem.isGoal(state))
                 return state;
