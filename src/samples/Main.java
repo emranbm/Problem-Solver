@@ -25,13 +25,10 @@ public class Main {
         walls.put(new Cell(2, 3), new Cell(2, 4));
         walls.put(new Cell(3, 3), new Cell(3, 4));
 
-        new Runner(new TreeBasedBFS(new PathFinderProblem(walls, 5, 5, new Cell(5, 5))), new StateFoundListener() {
-            @Override
-            public void found(State state, ArrayList<State> path) {
-                System.out.println("Goal: " + state.describeSelf());
-                System.out.println("Path:");
-                printPath(path);
-            }
+        new Runner(new TreeBasedBFS(new PathFinderProblem(walls, 5, 5, new Cell(5, 5))), (state, path) -> {
+            System.out.println("Goal: " + state.describeSelf());
+            System.out.println("Path:");
+            printPath(path);
         }).start();
     }
 
