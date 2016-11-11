@@ -28,8 +28,6 @@ public class Runner extends Thread {
         while (goal == null) {
             goal = solver.tick();
         }
-        this.listener.found(goal);
-
 
         if (goal instanceof LinkedState) {
             LinkedState state = (LinkedState) goal;
@@ -43,8 +41,9 @@ public class Runner extends Thread {
 
             path = reversePath(path);
 
-            printPath(path);
-        }
+            this.listener.found(goal, path);
+        } else
+            this.listener.found(goal, null);
     }
 
     private static ArrayList<models.State> reversePath(ArrayList<models.State> path) {
@@ -53,12 +52,5 @@ public class Runner extends Thread {
             reverse.add(path.get(i));
 
         return reverse;
-    }
-
-    private static void printPath(ArrayList<models.State> path) {
-        for (models.State state : path)
-            System.out.print(state.describeSelf() + " ");
-
-        System.out.println();
     }
 }
