@@ -60,16 +60,25 @@ public class HillClimbingRandonRestart implements Solver {
 
     @Override
     public int getSeenStatesCount() {
-        return 0;
+        int a = 0;
+        for (Solver s : solvers)
+            a += s.getSeenStatesCount();
+        return a;
     }
 
     @Override
     public int getExpandedCount() {
-        return 0;
+        int a = 0;
+        for (Solver s : solvers)
+            a += s.getExpandedCount();
+        return a;
     }
 
     @Override
     public int maxNodesInRAM() {
-        return 0;
+        int a = 0;
+        for (Solver s : solvers)
+            a += s.maxNodesInRAM();
+        return a;
     }
 }
