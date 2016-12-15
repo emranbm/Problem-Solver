@@ -4,6 +4,7 @@ import models.Action;
 import models.LinkedState;
 import models.Problem;
 import models.State;
+import solvers.Helper;
 import solvers.Solver;
 
 import java.util.ArrayList;
@@ -23,46 +24,7 @@ public class Bidirectional implements Solver {
     public Bidirectional(Problem problem) throws ClassCastException {
         finalState = (LinkedState) problem.finalState();
         solver1 = new TreeBasedBFS(problem);
-        solver2 = new TreeBasedBFS(overrideStartState(problem, finalState));
-    }
-
-    private Problem overrideStartState(Problem problem, State newStartState) {
-        return new Problem() {
-            @Override
-            public State startState() {
-                return newStartState;
-            }
-
-            @Override
-            public boolean isGoal(State state) {
-                return problem.isGoal(state);
-            }
-
-            @Override
-            public ArrayList<Action> availableActions(State state) {
-                return problem.availableActions(state);
-            }
-
-            @Override
-            public State actionResult(State state, Action action) {
-                return problem.actionResult(state, action);
-            }
-
-            @Override
-            public int pathCost(ArrayList<Action> actions) {
-                return problem.pathCost(actions);
-            }
-
-            @Override
-            public int h(State state) {
-                return problem.h(state);
-            }
-
-            @Override
-            public int g(State state) {
-                return problem.g(state);
-            }
-        };
+        solver2 = new TreeBasedBFS(Helper.overrideStartState(problem, finalState));
     }
 
     @Override
