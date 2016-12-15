@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by emran on 12/15/16.
  */
-public class HillClimbingFirstChoice implements Solver {
+public class HillClimbingRandom implements Solver {
 
     private Problem problem;
     private State currentState;
@@ -21,7 +21,7 @@ public class HillClimbingFirstChoice implements Solver {
     /**
      * @param problem Note that the given problem <b>h</b> method, should represent a value of a state, instead of a heuristic function.
      */
-    public HillClimbingFirstChoice(Problem problem) {
+    public HillClimbingRandom(Problem problem) {
         this.problem = problem;
         this.currentState = problem.startState();
     }
