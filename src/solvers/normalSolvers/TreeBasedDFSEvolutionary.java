@@ -1,4 +1,4 @@
-package solvers;
+package solvers.normalSolvers;
 
 import models.NoState;
 import models.Problem;
@@ -7,10 +7,10 @@ import models.State;
 /**
  * Created by emran on 10/29/16.
  */
-public class GraphBasedDFSEvolutionary extends GraphBasedDFS {
+public class TreeBasedDFSEvolutionary extends TreeBasedDFS {
     private Problem problem;
 
-    public GraphBasedDFSEvolutionary(Problem problem) {
+    public TreeBasedDFSEvolutionary(Problem problem) {
         super(problem, 1);
         this.problem = problem;
     }

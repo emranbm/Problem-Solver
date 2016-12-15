@@ -1,16 +1,19 @@
-package solvers;
+package solvers.normalSolvers;
 
 import models.LinkedState;
 import models.Problem;
 import models.State;
+import solvers.Solver;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
+ * A graph-based BFS search. It means duplicate states may be checked more than one time.
  * Created by emran on 10/29/16.
  */
-public class TreeBasedBFS extends TreeBasedSolver {
+public class GraphBasedBFS implements Solver {
+
     private LinkedList<State> queue;
     private Problem problem;
 
@@ -18,32 +21,25 @@ public class TreeBasedBFS extends TreeBasedSolver {
     private int seen = 1;
     private int maxNodesInRAM = 0;
 
-    public TreeBasedBFS(Problem problem) {
+    public GraphBasedBFS(Problem problem) {
         this.problem = problem;
         queue = new LinkedList<>();
         queue.add(problem.startState());
-        seenStates.add(problem.startState());
     }
 
     @Override
     public State tick() {
         State currentState = queue.poll();
-        ArrayList<State> children = problem.getChildren(currentState);
+        ArrayList<State> children = problem.getNeighbors(currentState);
+
         expanded++;
-
-        for (int i = children.size() - 1; i >= 0; i--) {
-            if (seenStates.contains(children.get(i)))
-                children.remove(i);
-        }
-
 
         for (State state : children) {
 
-            if (state instanceof LinkedState)
+            if(state instanceof LinkedState)
                 ((LinkedState) state).setParent((LinkedState) currentState);
 
             seen++;
-            seenStates.add(state);
             if (problem.isGoal(state))
                 return state;
         }

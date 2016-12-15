@@ -1,13 +1,9 @@
 package samples;
 
-import models.State;
 import runners.Runner;
-import runners.StateFoundListener;
-import samples.eightQueens.CheckerState;
-import samples.eightQueens.EightQueensProblem;
 import samples.pathFinder.Cell;
 import samples.pathFinder.PathFinderProblem;
-import solvers.*;
+import solvers.normalSolvers.TreeBasedBFS;
 
 import java.util.ArrayList;
 import java.util.HashMap;

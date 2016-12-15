@@ -28,7 +28,7 @@ public abstract class Problem {
      * @param state The parent state
      * @return All states that the parent can reach them by an action.
      */
-    public ArrayList<State> getChildren(State state) {
+    public ArrayList<State> getNeighbors(State state) {
         ArrayList<Action> actions = availableActions(state);
         ArrayList<State> children = new ArrayList<>();
 

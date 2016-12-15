@@ -1,4 +1,4 @@
-package solvers;
+package solvers.normalSolvers;
 
 import models.LinkedState;
 import models.NoState;
@@ -39,7 +39,7 @@ public class TreeBasedDFS extends TreeBasedSolver {
             return new NoState();
         }
         queue.remove(queue.size() - 1);
-        ArrayList<State> children = problem.getChildren(currentBundle.state);
+        ArrayList<State> children = problem.getNeighbors(currentBundle.state);
         expanded++;
 
         int nextDepth = currentBundle.depth + 1;

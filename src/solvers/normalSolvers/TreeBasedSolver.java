@@ -1,6 +1,7 @@
-package solvers;
+package solvers.normalSolvers;
 
 import models.State;
+import solvers.Solver;
 
 import java.util.ArrayList;
 

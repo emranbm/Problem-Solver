@@ -1,9 +1,10 @@
-package solvers;
+package solvers.normalSolvers;
 
 import models.LinkedState;
 import models.NoState;
 import models.Problem;
 import models.State;
+import solvers.Solver;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -40,7 +41,7 @@ public class GraphBasedDFS implements Solver {
         }
 
         queue.remove(queue.size() - 1);
-        ArrayList<State> children = problem.getChildren(currentBundle.state);
+        ArrayList<State> children = problem.getNeighbors(currentBundle.state);
         expanded++;
 
         int nextDepth = currentBundle.depth + 1;

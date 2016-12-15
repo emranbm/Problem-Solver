@@ -1,4 +1,4 @@
-package solvers;
+package solvers.normalSolvers;
 
 import models.Problem;
 

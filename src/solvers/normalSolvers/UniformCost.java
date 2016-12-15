@@ -1,8 +1,9 @@
-package solvers;
+package solvers.normalSolvers;
 
 import models.LinkedState;
 import models.Problem;
 import models.State;
+import solvers.Solver;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -39,7 +40,7 @@ public class UniformCost implements Solver {
 
         queue.remove(currentState);
 
-        ArrayList<State> children = problem.getChildren(currentState);
+        ArrayList<State> children = problem.getNeighbors(currentState);
         seen++;
         seenStates.add(currentState);
         if (problem.isGoal(currentState))

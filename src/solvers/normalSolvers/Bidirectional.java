@@ -1,9 +1,10 @@
-package solvers;
+package solvers.normalSolvers;
 
 import models.Action;
 import models.LinkedState;
 import models.Problem;
 import models.State;
+import solvers.Solver;
 
 import java.util.ArrayList;
 
