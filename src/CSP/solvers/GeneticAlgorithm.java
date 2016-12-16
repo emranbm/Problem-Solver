@@ -80,6 +80,8 @@ public class GeneticAlgorithm implements ConstraintSolver {
             if (Math.random() < mutationProbability)
                 answer.mutate();
 
+        steps++;
+
         return null;
     }
 
