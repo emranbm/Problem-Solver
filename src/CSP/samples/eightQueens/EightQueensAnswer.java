@@ -15,7 +15,17 @@ public class EightQueensAnswer extends Answer {
 
     @Override
     public String describeSelf() {
-        return "[" + value() + "]";
+        String self = "[";
+        for (int i : positions)
+            self += i + ", ";
+
+        self = self.substring(0,self.length() - 2) + "]";
+
+        return self;
+    }
+
+    public int[] getPositions() {
+        return positions;
     }
 
     @Override
