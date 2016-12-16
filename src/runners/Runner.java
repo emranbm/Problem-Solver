@@ -19,7 +19,7 @@ public class Runner extends Thread {
         this.solver = solver;
     }
 
-    public Runner(GoalBasedSolver solver, SolveFinishedListener listener) {
+    public Runner(Solver solver, SolveFinishedListener listener) {
         this(solver);
         this.listener = listener;
     }
