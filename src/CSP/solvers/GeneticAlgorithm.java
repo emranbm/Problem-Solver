@@ -25,14 +25,23 @@ public class GeneticAlgorithm implements ConstraintSolver {
     @Override
     public GeneticAnswer tick() {
 
+        GeneticAnswer bestTillNow = generation.get(0);
+        GeneticAnswer worstTillNow = generation.get(0);
+
+        double sum = 0;
+
+        for (GeneticAnswer a : generation) {
+            if (bestTillNow.value() < a.value())
+                bestTillNow = a;
+
+            if (worstTillNow.value() > a.value())
+                worstTillNow = a;
+
+            sum += a.value();
+        }
+
         if (steps == totalGenerations) {
-            GeneticAnswer best = generation.get(0);
-
-            for (GeneticAnswer a : generation)
-                if (best.value() < a.value())
-                    best = a;
-
-            return best;
+            return bestTillNow;
         }
 
         int parentSize = (int) Math.sqrt(2 * popSize);

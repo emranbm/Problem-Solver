@@ -17,7 +17,7 @@ public class Main {
         for (int i = 0; i < 20; i++)
             firstGeneration.add(new X(0.2 + i * 0.1));
 
-        Runner runner = new Runner(new GeneticAlgorithm(firstGeneration, 100, 0.1), answer -> {
+        Runner runner = new Runner(new GeneticAlgorithm(firstGeneration, 100, 0.01), answer -> {
             System.out.println(answer.describeSelf());
         });
 
