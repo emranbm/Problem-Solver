@@ -9,23 +9,21 @@ import utils.Helper;
  */
 public class HillClimbingRandomRestart implements ConstraintSolver {
 
-    private ConstraintProblem goalBasedProblem;
     private HillClimbingSimple[] solvers;
 
     private Answer[] results;
 
     /**
-     * @param goalBasedProblem      Note that the given GoalBasedProblem <b>h</b> method, should represent a value of a state, instead of a heuristic function. <br/>
+     * @param problem      Note that the given GoalBasedProblem <b>h</b> method, should represent a value of a state, instead of a heuristic function. <br/>
      *                     There is also no need to specify the start state, due the given randomStarts replace the GoalBasedProblem start states.
      * @param randomStarts The random restarts when a peak achieved.
      **/
-    public HillClimbingRandomRestart(ConstraintProblem goalBasedProblem, Answer[] randomStarts) {
-        this.goalBasedProblem = goalBasedProblem;
+    public HillClimbingRandomRestart(ConstraintProblem problem, Answer[] randomStarts) {
         this.solvers = new HillClimbingSimple[randomStarts.length];
         this.results = new Answer[randomStarts.length];
 
-        for (int i = 1; i < randomStarts.length; i++) {
-            solvers[i] = new HillClimbingSimple(Helper.overrideInitialAnswer(goalBasedProblem, randomStarts[i]));
+        for (int i = 0; i < randomStarts.length; i++) {
+            solvers[i] = new HillClimbingSimple(Helper.overrideInitialAnswer(problem, randomStarts[i]));
         }
     }
 
