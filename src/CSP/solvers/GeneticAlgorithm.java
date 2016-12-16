@@ -1,7 +1,7 @@
 package CSP.solvers;
 
 import CSP.models.Answer;
-import Helper;
+import utils.Helper;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,7 @@
 package runners;
 
 import goalBasedProblems.models.LinkedState;
-import Solver;
+import utils.Solver;
 
 import java.util.ArrayList;
 

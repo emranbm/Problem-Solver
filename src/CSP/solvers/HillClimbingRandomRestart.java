@@ -2,7 +2,7 @@ package CSP.solvers;
 
 import CSP.models.Answer;
 import CSP.models.ConstraintProblem;
-import Helper;
+import utils.Helper;
 
 /**
  * Created by emran on 12/15/16.

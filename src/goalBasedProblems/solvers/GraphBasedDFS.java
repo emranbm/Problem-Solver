@@ -4,7 +4,7 @@ import goalBasedProblems.models.GoalBasedProblem;
 import goalBasedProblems.models.LinkedState;
 import goalBasedProblems.models.NoState;
 import goalBasedProblems.models.State;
-import Solver;
+import utils.Solver;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

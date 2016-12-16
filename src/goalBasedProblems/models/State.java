@@ -1,6 +1,6 @@
 package goalBasedProblems.models;
 
-import Descriptionable;
+import utils.Descriptionable;
 
 /**
  * A model representing the state in a problem. Feel free to extend this class to implement your own state.

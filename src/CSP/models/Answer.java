@@ -1,6 +1,6 @@
 package CSP.models;
 
-import Descriptionable;
+import utils.Descriptionable;
 
 /**
  * Created by emran on 12/15/16.

@@ -1,7 +1,7 @@
 package goalBasedProblems.solvers;
 
 import goalBasedProblems.models.State;
-import Solver;
+import utils.Solver;
 
 import java.util.ArrayList;
 

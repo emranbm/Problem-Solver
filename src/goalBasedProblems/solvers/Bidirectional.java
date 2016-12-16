@@ -3,8 +3,8 @@ package goalBasedProblems.solvers;
 import goalBasedProblems.models.LinkedState;
 import goalBasedProblems.models.GoalBasedProblem;
 import goalBasedProblems.models.State;
-import Helper;
-import Solver;
+import utils.Helper;
+import utils.Solver;
 
 import java.util.ArrayList;
 

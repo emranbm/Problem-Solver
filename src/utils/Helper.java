@@ -1,3 +1,5 @@
+package utils;
+
 import CSP.models.Answer;
 import CSP.models.ConstraintProblem;
 import goalBasedProblems.models.Action;
