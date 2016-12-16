@@ -45,7 +45,7 @@ public class Runner extends Thread {
 
             this.listener.finished(goal);
             ((StateFoundListener) this.listener).pathFound(path);
-        } else if (goal instanceof goalBasedProblems.models.State)
+        } else
             this.listener.finished(goal);
     }
 
