@@ -7,6 +7,7 @@ import models.goalBased.GoalBasedProblem;
 import models.goalBased.State;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by emran on 12/15/16.
@@ -78,5 +79,14 @@ public class Helper {
                 return newInitialAnswer;
             }
         };
+    }
+
+    public static ArrayList mergeArray(ArrayList a1, ArrayList a2) {
+        ArrayList result = (ArrayList) a1.clone();
+
+        for (Object obj : a2)
+            result.add(obj);
+
+        return result;
     }
 }
