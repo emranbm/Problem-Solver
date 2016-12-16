@@ -1,6 +1,6 @@
 package CSP.solvers;
 
-import CSP.models.Answer;
+import CSP.models.GeneticAnswer;
 import utils.Helper;
 
 import java.util.ArrayList;
@@ -96,13 +96,5 @@ public class GeneticAlgorithm implements ConstraintSolver {
     @Override
     public int maxNodesInRAM() {
         return 0;
-    }
-
-    public static abstract class GeneticAnswer extends Answer {
-
-        public abstract void mutate();
-
-        public abstract GeneticAnswer crossOver(GeneticAnswer geneticAnswer);
-
     }
 }
