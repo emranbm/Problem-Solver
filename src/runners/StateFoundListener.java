@@ -1,6 +1,6 @@
 package runners;
 
-import models.goalBased.State;
+import goalBasedProblems.models.State;
 
 import java.util.ArrayList;
 
