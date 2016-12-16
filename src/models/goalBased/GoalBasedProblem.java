@@ -1,11 +1,11 @@
-package models;
+package models.goalBased;
 
 import java.util.ArrayList;
 
 /**
  * Created by emran on 10/29/16.
  */
-public abstract class Problem {
+public abstract class GoalBasedProblem {
 
     /**
      * Returns the starting state of the problem.
@@ -28,7 +28,7 @@ public abstract class Problem {
      * @param state The parent state
      * @return All states that the parent can reach them by an action.
      */
-    public ArrayList<State> getNeighbors(State state) {
+    public ArrayList<State> getChildren(State state) {
         ArrayList<Action> actions = availableActions(state);
         ArrayList<State> children = new ArrayList<>();
 

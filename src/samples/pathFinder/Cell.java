@@ -1,6 +1,6 @@
 package samples.pathFinder;
 
-import models.LinkedState;
+import models.goalBased.LinkedState;
 
 /**
  * Created by emran on 11/11/16.

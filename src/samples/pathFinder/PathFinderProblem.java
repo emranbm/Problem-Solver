@@ -1,9 +1,8 @@
 package samples.pathFinder;
 
-import models.Action;
-import models.LinkedState;
-import models.Problem;
-import models.State;
+import models.goalBased.Action;
+import models.goalBased.GoalBasedProblem;
+import models.goalBased.State;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +10,7 @@ import java.util.HashMap;
 /**
  * Created by emran on 11/11/16.
  */
-public class PathFinderProblem extends Problem {
+public class PathFinderProblem extends GoalBasedProblem {
 
     private HashMap<Cell, Cell> walls;
     private int width, height;

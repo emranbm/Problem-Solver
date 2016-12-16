@@ -1,9 +1,8 @@
-package solvers.normalSolvers;
+package solvers.goalBasedSolvers;
 
-import models.Action;
-import models.LinkedState;
-import models.Problem;
-import models.State;
+import models.goalBased.LinkedState;
+import models.goalBased.GoalBasedProblem;
+import models.goalBased.State;
 import solvers.Helper;
 import solvers.Solver;
 
@@ -18,13 +17,13 @@ public class Bidirectional implements Solver {
     private LinkedState finalState;
 
     /**
-     * @param problem
-     * @throws ClassCastException If the problem final or start state is not an instance of {@link LinkedState LinkedState}.
+     * @param goalBasedProblem
+     * @throws ClassCastException If the GoalBasedProblem final or start state is not an instance of {@link LinkedState LinkedState}.
      */
-    public Bidirectional(Problem problem) throws ClassCastException {
-        finalState = (LinkedState) problem.finalState();
-        solver1 = new TreeBasedBFS(problem);
-        solver2 = new TreeBasedBFS(Helper.overrideStartState(problem, finalState));
+    public Bidirectional(GoalBasedProblem goalBasedProblem) throws ClassCastException {
+        finalState = (LinkedState) goalBasedProblem.finalState();
+        solver1 = new TreeBasedBFS(goalBasedProblem);
+        solver2 = new TreeBasedBFS(Helper.overrideStartState(goalBasedProblem, finalState));
     }
 
     @Override

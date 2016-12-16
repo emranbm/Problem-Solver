@@ -1,6 +1,6 @@
 package runners;
 
-import models.LinkedState;
+import models.goalBased.LinkedState;
 import solvers.Solver;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class Runner extends Thread {
 
     @Override
     public void run() {
-        models.State goal = null;
+        models.goalBased.State goal = null;
         while (goal == null) {
             goal = solver.tick();
         }
@@ -32,7 +32,7 @@ public class Runner extends Thread {
         if (goal instanceof LinkedState) {
             LinkedState state = (LinkedState) goal;
 
-            ArrayList<models.State> path = new ArrayList<>();
+            ArrayList<models.goalBased.State> path = new ArrayList<>();
 
             while (state != null) {
                 path.add(state);
@@ -46,8 +46,8 @@ public class Runner extends Thread {
             this.listener.found(goal, null);
     }
 
-    private static ArrayList<models.State> reversePath(ArrayList<models.State> path) {
-        ArrayList<models.State> reverse = new ArrayList<>();
+    private static ArrayList<models.goalBased.State> reversePath(ArrayList<models.goalBased.State> path) {
+        ArrayList<models.goalBased.State> reverse = new ArrayList<>();
         for (int i = path.size() - 1; i >= 0; i--)
             reverse.add(path.get(i));
 

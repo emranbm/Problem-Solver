@@ -1,54 +1,54 @@
-package solvers.intelligentSolvers;
+package solvers.constraintSolvers;
 
-import models.NoState;
-import models.Problem;
-import models.State;
-import solvers.Solver;
+import models.constraintSatisfaction.Answer;
+import models.constraintSatisfaction.ConstraintProblem;
+import models.constraintSatisfaction.NoAnswer;
+import models.goalBased.State;
 
 import java.util.ArrayList;
 
 /**
  * Created by emran on 12/15/16.
  */
-public class SimulatedAnnealing implements Solver {
+public class SimulatedAnnealing implements ConstraintSolver {
 
     private int stepCounter = 0;
     private int maxSteps;
-    private State currentState;
-    private Problem problem;
+    private Answer currentAnswer;
+    private ConstraintProblem constraintProblem;
     private TFunction tFunction;
 
     private int seenStates = 0;
     private int maxNodesInRam = -1;
 
     /**
-     * @param problem  Note that the given problem <b>h</b> method, should represent a value of a state, instead of a heuristic function.
+     * @param constraintProblem  Note that the given GoalBasedProblem <b>h</b> method, should represent a value of a state, instead of a heuristic function.
      * @param maxSteps Maximum steps to go for finding a good-value state.
      */
-    public SimulatedAnnealing(Problem problem, TFunction tFunction, int maxSteps) {
+    public SimulatedAnnealing(ConstraintProblem constraintProblem, TFunction tFunction, int maxSteps) {
         this.maxSteps = maxSteps;
-        this.problem = problem;
-        this.currentState = problem.startState();
+        this.constraintProblem = constraintProblem;
+        this.currentAnswer = constraintProblem.initialAnswer();
         this.tFunction = tFunction;
     }
 
     @Override
-    public State tick() {
+    public Answer tick() {
 
         if (stepCounter == maxSteps)
-            return currentState == null ? new NoState() : currentState;
+            return currentAnswer == null ? new NoAnswer() : currentAnswer;
 
-        ArrayList<State> neighbors = problem.getNeighbors(currentState);
+        ArrayList<Answer> neighbors = constraintProblem.neighbors(currentAnswer);
 
         int neighborCount = neighbors.size();
 
         if (neighborCount > maxNodesInRam)
             maxNodesInRam = neighborCount;
 
-        State suggestion = neighbors.get((int) (Math.random() * neighborCount));
+        Answer suggestion = neighbors.get((int) (Math.random() * neighborCount));
 
-        if (problem.h(suggestion) >= problem.h(currentState) || Math.random() < this.tFunction.p(stepCounter)) {
-            currentState = suggestion;
+        if (suggestion.value() >= currentAnswer.value() || Math.random() < this.tFunction.p(stepCounter)) {
+            currentAnswer = suggestion;
             seenStates++;
         }
 

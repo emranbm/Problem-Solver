@@ -1,9 +1,10 @@
-package solvers.normalSolvers;
+package solvers.goalBasedSolvers;
 
-import models.LinkedState;
-import models.NoState;
-import models.Problem;
-import models.State;
+import models.goalBased.GoalBasedProblem;
+import models.goalBased.LinkedState;
+import models.goalBased.NoState;
+import models.goalBased.State;
+import solvers.Solver;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -11,9 +12,10 @@ import java.util.LinkedList;
 /**
  * Created by emran on 10/29/16.
  */
-public class TreeBasedDFS extends TreeBasedSolver {
+public class GraphBasedDFS implements Solver {
+
+    private GoalBasedProblem goalBasedProblem;
     protected LinkedList<StateDepthBundle> queue;
-    private Problem problem;
 
     private int expanded = 0;
     private int seen = 1;
@@ -21,12 +23,11 @@ public class TreeBasedDFS extends TreeBasedSolver {
 
     protected int maxDepth;
 
-    public TreeBasedDFS(Problem problem, int maxDepth) {
-        this.problem = problem;
-        queue = new LinkedList<>();
-        queue.add(new StateDepthBundle(problem.startState(), 0));
+    public GraphBasedDFS(GoalBasedProblem goalBasedProblem, int maxDepth) {
+        this.goalBasedProblem = goalBasedProblem;
+        this.queue = new LinkedList<>();
+        this.queue.add(new StateDepthBundle(goalBasedProblem.startState(), 0));
         this.maxDepth = maxDepth;
-        seenStates.add(problem.startState());
     }
 
     @Override
@@ -38,8 +39,9 @@ public class TreeBasedDFS extends TreeBasedSolver {
             // Nothing found in the given max depth.
             return new NoState();
         }
+
         queue.remove(queue.size() - 1);
-        ArrayList<State> children = problem.getNeighbors(currentBundle.state);
+        ArrayList<State> children = goalBasedProblem.getChildren(currentBundle.state);
         expanded++;
 
         int nextDepth = currentBundle.depth + 1;
@@ -47,26 +49,20 @@ public class TreeBasedDFS extends TreeBasedSolver {
         if (nextDepth > maxDepth)
             return null;
 
-        for (int i = children.size() - 1; i >= 0; i--) {
-            if (seenStates.contains(children.get(i)))
-                children.remove(i);
-        }
-
-
         for (State state : children) {
 
             if (state instanceof LinkedState)
                 ((LinkedState) state).setParent((LinkedState) currentBundle.state);
 
             seen++;
-            seenStates.add(state);
-            if (problem.isGoal(state))
+            if (goalBasedProblem.isGoal(state))
                 return state;
 
-            //queue.addAll(children);
             queue.add(new StateDepthBundle(state, nextDepth));
         }
 
+
+//        queue.addAll(children);
 
         if (queue.size() > maxNodesInRAM)
             maxNodesInRAM = queue.size();

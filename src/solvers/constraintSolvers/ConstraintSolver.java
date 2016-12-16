@@ -1,18 +1,18 @@
-package solvers;
+package solvers.constraintSolvers;
 
-import models.goalBased.State;
+import models.constraintSatisfaction.Answer;
 
 /**
  * Created by emran on 10/29/16.
  */
-public interface Solver {
+public interface ConstraintSolver {
 
     /**
      * This method gets called periodically.
      *
      * @return The goal state if found. Returns null if not found the goal yet.
      */
-    State tick();
+    Answer tick();
 
     int getSeenStatesCount();
     int getExpandedCount();

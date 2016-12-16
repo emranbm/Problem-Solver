@@ -1,8 +1,10 @@
 package solvers;
 
-import models.Action;
-import models.Problem;
-import models.State;
+import models.constraintSatisfaction.Answer;
+import models.constraintSatisfaction.ConstraintProblem;
+import models.goalBased.Action;
+import models.goalBased.GoalBasedProblem;
+import models.goalBased.State;
 
 import java.util.ArrayList;
 
@@ -12,14 +14,14 @@ import java.util.ArrayList;
 public class Helper {
 
     /**
-     * Replaces the start state of the given problem with a custom state.
+     * Replaces the start state of the given GoalBasedProblem with a custom state.
      *
-     * @param problem
+     * @param goalBasedProblem
      * @param newStartState
-     * @return A problem which its start state is exactly the newStartState.
+     * @return A GoalBasedProblem which its start state is exactly the newStartState.
      */
-    public static Problem overrideStartState(Problem problem, State newStartState) {
-        return new Problem() {
+    public static GoalBasedProblem overrideStartState(GoalBasedProblem goalBasedProblem, State newStartState) {
+        return new GoalBasedProblem() {
             @Override
             public State startState() {
                 return newStartState;
@@ -27,32 +29,53 @@ public class Helper {
 
             @Override
             public boolean isGoal(State state) {
-                return problem.isGoal(state);
+                return goalBasedProblem.isGoal(state);
             }
 
             @Override
             public ArrayList<Action> availableActions(State state) {
-                return problem.availableActions(state);
+                return goalBasedProblem.availableActions(state);
             }
 
             @Override
             public State actionResult(State state, Action action) {
-                return problem.actionResult(state, action);
+                return goalBasedProblem.actionResult(state, action);
             }
 
             @Override
             public int pathCost(ArrayList<Action> actions) {
-                return problem.pathCost(actions);
+                return goalBasedProblem.pathCost(actions);
             }
 
             @Override
             public int h(State state) {
-                return problem.h(state);
+                return goalBasedProblem.h(state);
             }
 
             @Override
             public int g(State state) {
-                return problem.g(state);
+                return goalBasedProblem.g(state);
+            }
+        };
+    }
+
+    /**
+     * Replaces the initial answer of the given ConstraintProblem with a custom answer.
+     *
+     * @param constraintProblem
+     * @param newInitialAnswer
+     * @return A ConstraintProblem which its initial answer is exactly the newInitialAnswer.
+     */
+    public static ConstraintProblem overrideInitialAnswer(ConstraintProblem constraintProblem, Answer newInitialAnswer) {
+        return new ConstraintProblem() {
+            @Override
+            public ArrayList<Answer> neighbors(Answer answer) {
+                return constraintProblem.neighbors(answer);
+            }
+
+            @Override
+            public Answer initialAnswer() {
+                return newInitialAnswer;
             }
         };
     }

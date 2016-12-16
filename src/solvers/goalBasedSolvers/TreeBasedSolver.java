@@ -1,6 +1,6 @@
-package solvers.normalSolvers;
+package solvers.goalBasedSolvers;
 
-import models.State;
+import models.goalBased.State;
 import solvers.Solver;
 
 import java.util.ArrayList;

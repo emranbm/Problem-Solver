@@ -1,6 +1,6 @@
-package solvers.normalSolvers;
+package solvers.goalBasedSolvers;
 
-import models.State;
+import models.goalBased.State;
 
 /**
  * Created by emran on 10/29/16.

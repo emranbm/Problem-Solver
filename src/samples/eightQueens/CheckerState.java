@@ -1,7 +1,6 @@
 package samples.eightQueens;
 
-import models.Action;
-import models.State;
+import models.goalBased.State;
 
 /**
  * Created by emran on 11/6/16.

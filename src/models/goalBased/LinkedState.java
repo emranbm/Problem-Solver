@@ -1,4 +1,4 @@
-package models;
+package models.goalBased;
 
 /**
  * Created by emran on 11/11/16.

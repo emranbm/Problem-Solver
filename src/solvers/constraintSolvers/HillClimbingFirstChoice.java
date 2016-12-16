@@ -1,19 +1,20 @@
-package solvers.intelligentSolvers;
+package solvers.constraintSolvers;
 
-import models.NoState;
-import models.Problem;
-import models.State;
-import solvers.Solver;
+import models.constraintSatisfaction.Answer;
+import models.constraintSatisfaction.ConstraintProblem;
+import models.constraintSatisfaction.NoAnswer;
+import models.goalBased.NoState;
+import models.goalBased.State;
 
 import java.util.ArrayList;
 
 /**
  * Created by emran on 12/15/16.
  */
-public class HillClimbingFirstChoice implements Solver {
+public class HillClimbingFirstChoice implements ConstraintSolver {
 
-    private Problem problem;
-    private State currentState;
+    private ConstraintProblem problem;
+    private Answer currentAnswer;
     private int maxRandomTries;
 
     private int maxNodesInRam = -1;
@@ -21,18 +22,18 @@ public class HillClimbingFirstChoice implements Solver {
     private int expandedStates = 0;
 
     /**
-     * @param problem        Note that the given problem <b>h</b> method, should represent a value of a state, instead of a heuristic function.
+     * @param problem
      * @param maxRandomTries Maximum number of random tries on neighbors to find a better neighbor. If no better neighbor achieved in these tries, the current state will be returned as the best result.
      */
-    public HillClimbingFirstChoice(Problem problem, int maxRandomTries) {
+    public HillClimbingFirstChoice(ConstraintProblem problem, int maxRandomTries) {
         this.problem = problem;
-        this.currentState = problem.startState();
+        this.currentAnswer = problem.initialAnswer();
         this.maxRandomTries = maxRandomTries;
     }
 
     @Override
-    public State tick() {
-        ArrayList<State> neighbors = problem.getNeighbors(currentState);
+    public Answer tick() {
+        ArrayList<Answer> neighbors = problem.neighbors(currentAnswer);
         expandedStates++;
 
         int neighborCount = neighbors.size();
@@ -45,16 +46,16 @@ public class HillClimbingFirstChoice implements Solver {
         boolean betterFound = false;
 
         for (int i = 0; i < maxRandomTries; i++) {
-            State neighb = neighbors.get((int) (Math.random() * neighborCount));
-            if (problem.h(neighb) > problem.h(currentState)) {
-                currentState = neighb;
+            Answer neighb = neighbors.get((int) (Math.random() * neighborCount));
+            if (neighb.value() > currentAnswer.value()) {
+                currentAnswer = neighb;
                 betterFound = true;
                 break;
             }
         }
 
         if (!betterFound)
-            return currentState == null ? new NoState() : currentState;
+            return currentAnswer == null ? new NoAnswer() : currentAnswer;
 
         return null;
     }

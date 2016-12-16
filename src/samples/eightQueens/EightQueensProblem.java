@@ -1,15 +1,15 @@
 package samples.eightQueens;
 
-import models.Action;
-import models.Problem;
-import models.State;
+import models.goalBased.Action;
+import models.goalBased.GoalBasedProblem;
+import models.goalBased.State;
 
 import java.util.ArrayList;
 
 /**
  * Created by emran on 11/6/16.
  */
-public class EightQueensProblem extends Problem {
+public class EightQueensProblem extends GoalBasedProblem {
     @Override
     public State startState() {
         return new CheckerState(0, 1, 2, 3, 4, 5, 6, 7);

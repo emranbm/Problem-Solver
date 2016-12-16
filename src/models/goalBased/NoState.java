@@ -1,4 +1,4 @@
-package models;
+package models.goalBased;
 
 /**
  * A class representing situations where no state is found in a search. (Note that returning null in Runners shows that no state found <b>yet</b>!)

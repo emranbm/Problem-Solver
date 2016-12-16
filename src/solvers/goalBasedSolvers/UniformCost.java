@@ -1,8 +1,8 @@
-package solvers.normalSolvers;
+package solvers.goalBasedSolvers;
 
-import models.LinkedState;
-import models.Problem;
-import models.State;
+import models.goalBased.GoalBasedProblem;
+import models.goalBased.LinkedState;
+import models.goalBased.State;
 import solvers.Solver;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.LinkedList;
 public class UniformCost implements Solver {
 
     private LinkedList<State> queue;
-    private Problem problem;
+    private GoalBasedProblem goalBasedProblem;
 
     private int expanded = 0;
     private int seen = 1;
@@ -22,11 +22,11 @@ public class UniformCost implements Solver {
 
     private ArrayList<State> seenStates;
 
-    public UniformCost(Problem problem) {
-        this.problem = problem;
+    public UniformCost(GoalBasedProblem goalBasedProblem) {
+        this.goalBasedProblem = goalBasedProblem;
         seenStates = new ArrayList<>();
         queue = new LinkedList<>();
-        queue.add(problem.startState());
+        queue.add(goalBasedProblem.startState());
     }
 
     @Override
@@ -34,16 +34,16 @@ public class UniformCost implements Solver {
         State currentState = queue.getFirst();
 
         for (State state : queue) {
-            if (problem.g(state) < problem.g(currentState))
+            if (goalBasedProblem.g(state) < goalBasedProblem.g(currentState))
                 currentState = state;
         }
 
         queue.remove(currentState);
 
-        ArrayList<State> children = problem.getNeighbors(currentState);
+        ArrayList<State> children = goalBasedProblem.getChildren(currentState);
         seen++;
         seenStates.add(currentState);
-        if (problem.isGoal(currentState))
+        if (goalBasedProblem.isGoal(currentState))
             return currentState;
         expanded++;
 

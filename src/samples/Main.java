@@ -1,9 +1,10 @@
 package samples;
 
+import models.goalBased.State;
 import runners.Runner;
 import samples.pathFinder.Cell;
 import samples.pathFinder.PathFinderProblem;
-import solvers.normalSolvers.TreeBasedBFS;
+import solvers.goalBasedSolvers.TreeBasedBFS;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,8 +30,8 @@ public class Main {
     }
 
 
-    private static void printPath(ArrayList<models.State> path) {
-        for (models.State state : path)
+    private static void printPath(ArrayList<State> path) {
+        for (State state : path)
             System.out.print(state.describeSelf() + " ");
 
         System.out.println();
