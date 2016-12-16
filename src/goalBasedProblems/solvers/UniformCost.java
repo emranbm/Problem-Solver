@@ -3,7 +3,6 @@ package goalBasedProblems.solvers;
 import goalBasedProblems.models.GoalBasedProblem;
 import goalBasedProblems.models.LinkedState;
 import goalBasedProblems.models.State;
-import utils.Solver;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -11,7 +10,7 @@ import java.util.LinkedList;
 /**
  * Created by emran on 10/30/16.
  */
-public class UniformCost implements Solver {
+public class UniformCost implements GoalBasedSolver {
 
     private LinkedList<State> queue;
     private GoalBasedProblem goalBasedProblem;

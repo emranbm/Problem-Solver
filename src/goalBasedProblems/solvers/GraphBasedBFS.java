@@ -3,7 +3,6 @@ package goalBasedProblems.solvers;
 import goalBasedProblems.models.GoalBasedProblem;
 import goalBasedProblems.models.LinkedState;
 import goalBasedProblems.models.State;
-import utils.Solver;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -12,7 +11,7 @@ import java.util.LinkedList;
  * A graph-based BFS search. It means duplicate states may be checked more than one time.
  * Created by emran on 10/29/16.
  */
-public class GraphBasedBFS implements Solver {
+public class GraphBasedBFS implements GoalBasedSolver {
 
     private LinkedList<State> queue;
     private GoalBasedProblem goalBasedProblem;

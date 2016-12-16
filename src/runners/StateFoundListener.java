@@ -7,12 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by emran on 11/10/16.
  */
-public interface StateFoundListener {
+public interface StateFoundListener extends SolveFinishedListener {
 
-    /**
-     *
-     * @param state
-     * @param path @Nullable
-     */
-    void found(State state, ArrayList<State> path);
+    void pathFound(ArrayList<State> path);
 }

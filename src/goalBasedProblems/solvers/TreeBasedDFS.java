@@ -35,7 +35,7 @@ public class TreeBasedDFS extends TreeBasedSolver {
         try {
             currentBundle = queue.getLast();
         } catch (Exception e) {
-            // Nothing found in the given max depth.
+            // Nothing finished in the given max depth.
             return new NoState();
         }
         queue.remove(queue.size() - 1);

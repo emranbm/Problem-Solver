@@ -4,14 +4,13 @@ import goalBasedProblems.models.LinkedState;
 import goalBasedProblems.models.GoalBasedProblem;
 import goalBasedProblems.models.State;
 import utils.Helper;
-import utils.Solver;
 
 import java.util.ArrayList;
 
 /**
  * Created by emran on 10/31/16.
  */
-public class Bidirectional implements Solver {
+public class Bidirectional implements GoalBasedSolver {
 
     private TreeBasedBFS solver1, solver2;
     private LinkedState finalState;

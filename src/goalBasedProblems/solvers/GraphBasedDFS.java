@@ -4,7 +4,6 @@ import goalBasedProblems.models.GoalBasedProblem;
 import goalBasedProblems.models.LinkedState;
 import goalBasedProblems.models.NoState;
 import goalBasedProblems.models.State;
-import utils.Solver;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -12,7 +11,7 @@ import java.util.LinkedList;
 /**
  * Created by emran on 10/29/16.
  */
-public class GraphBasedDFS implements Solver {
+public class GraphBasedDFS implements GoalBasedSolver {
 
     private GoalBasedProblem goalBasedProblem;
     protected LinkedList<StateDepthBundle> queue;
@@ -36,7 +35,7 @@ public class GraphBasedDFS implements Solver {
         try {
             currentBundle = queue.getLast();
         } catch (Exception e) {
-            // Nothing found in the given max depth.
+            // Nothing finished in the given max depth.
             return new NoState();
         }
 
