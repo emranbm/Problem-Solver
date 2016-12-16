@@ -77,6 +77,10 @@ public class GeneticAlgorithm implements ConstraintSolver {
 
         generation = all;
 
+        for (GeneticAnswer answer : generation)
+            if (Math.random() < mutationProbability)
+                answer.mutate();
+
         return null;
     }
 
@@ -97,7 +101,7 @@ public class GeneticAlgorithm implements ConstraintSolver {
 
     public static abstract class GeneticAnswer extends Answer {
 
-        public abstract GeneticAnswer mutate();
+        public abstract void mutate();
 
         public abstract GeneticAnswer crossOver(GeneticAnswer geneticAnswer);
 
