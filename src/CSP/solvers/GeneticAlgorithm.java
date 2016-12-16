@@ -43,10 +43,13 @@ public class GeneticAlgorithm implements ConstraintSolver {
 
         while (parents.size() < parentSize) {
             GeneticAnswer best = generation.get(0);
+            int bestValue = Integer.MIN_VALUE;
 
             for (GeneticAnswer answer : generation)
-                if (answer.value() > best.value() && !parents.contains(answer))
+                if (answer.value() > bestValue && !parents.contains(answer)) {
                     best = answer;
+                    bestValue = answer.value();
+                }
 
             parents.add(best);
         }
@@ -65,11 +68,17 @@ public class GeneticAlgorithm implements ConstraintSolver {
 
         ArrayList<GeneticAnswer> all = Helper.mergeArray(newGen, generation);
 
+        ArrayList<GeneticAnswer> worsts = new ArrayList<>();
+
         while (all.size() > popSize) {
             GeneticAnswer worst = all.get(0);
+            int worstValue = Integer.MAX_VALUE;
             for (GeneticAnswer a : all)
-                if (a.value() < worst.value())
+                if (a.value() < worstValue && !worsts.contains(a)) {
                     worst = a;
+                    worstValue = a.value();
+                    worsts.add(a);
+                }
 
             all.remove(worst);
         }

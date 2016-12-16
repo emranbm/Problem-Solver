@@ -21,7 +21,7 @@ public class X extends GeneticAnswer {
 
     @Override
     public void mutate() {
-        x = Math.exp(-1 * Math.pow(x, 2) / 0.02);
+        x = 1/Math.exp(Math.pow(x, 2) / 0.02);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class X extends GeneticAnswer {
 
     @Override
     public int value() {
-        return (int) (Math.abs(Math.pow(x, 2) - x - Math.sin(x)) * 100000);
+        return (int) (1/Math.abs(Math.pow(x, 2) - x - Math.sin(x)));
     }
 
     @Override
