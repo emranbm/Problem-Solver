@@ -1,4 +1,4 @@
-package samples.eightQueens;
+package samples.goalBased.eightQueens;
 
 import models.goalBased.State;
 

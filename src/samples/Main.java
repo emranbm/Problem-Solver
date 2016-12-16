@@ -2,8 +2,8 @@ package samples;
 
 import models.goalBased.State;
 import runners.Runner;
-import samples.pathFinder.Cell;
-import samples.pathFinder.PathFinderProblem;
+import samples.goalBased.pathFinder.Cell;
+import samples.goalBased.pathFinder.PathFinderProblem;
 import solvers.goalBasedSolvers.TreeBasedBFS;
 
 import java.util.ArrayList;

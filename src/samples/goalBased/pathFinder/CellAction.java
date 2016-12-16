@@ -1,4 +1,4 @@
-package samples.pathFinder;
+package samples.goalBased.pathFinder;
 
 import models.goalBased.Action;
 
